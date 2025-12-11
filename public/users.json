@@ -3,7 +3,10 @@
     "id": 1,
     "firstName": "hanoch",
     "lastName": "spero",
+    "nickName": "misi",
+    "password": "1111",
+    "lastQuestions": { "add": [], "sub": [], "mul": [], "div": [] },
     "email": "speroim@gmail.com",
-    "score": 100
+    "score": 145
   }
 ]

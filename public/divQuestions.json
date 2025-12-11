@@ -1,437 +1,422 @@
 [
   {
-    "id": 0,
-    "question": "13+39=",
-    "answer": 52,
-    "rank": 95,
-    "category": "add"
-  },
-  {
     "id": 1,
-    "question": "1+1=",
+    "question": "1/1=",
     "answer": 2,
-    "rank": 95,
-    "category": "add"
+    "rank": 90,
+    "category": "divide"
   },
   {
     "id": 2,
-    "question": "2+1=",
+    "question": "2/1=",
     "answer": 3,
-    "rank": 105,
-    "category": "add"
+    "rank": 100,
+    "category": "divide"
   },
   {
     "id": 3,
-    "question": "3+1=",
+    "question": "3/1=",
     "answer": 4,
-    "rank": 90,
-    "category": "add"
+    "rank": 100,
+    "category": "divide"
   },
   {
     "id": 4,
-    "question": "4+1=",
+    "question": "4/1=",
     "answer": 5,
     "rank": 95,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 5,
-    "question": "5+1=",
+    "question": "5/1=",
     "answer": 6,
     "rank": 100,
-    "category": "add"
-  },
-  {
-    "id": 6,
-    "question": "235+18=",
-    "answer": 253,
-    "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 7,
-    "question": "6+3=",
+    "question": "6/3=",
     "answer": 9,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 8,
-    "question": "6+6=",
+    "question": "6/6=",
     "answer": 12,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 9,
-    "question": "6+19=",
+    "question": "6/19=",
     "answer": 25,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 10,
-    "question": "16+11=",
+    "question": "16/11=",
     "answer": 27,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 11,
-    "question": "93+23=",
+    "question": "93/23=",
     "answer": 116,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 12,
-    "question": "84+21=",
+    "question": "84/21=",
     "answer": 105,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 13,
-    "question": "79+83=",
+    "question": "79/83=",
     "answer": 162,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 14,
-    "question": "4+73=",
+    "question": "4/73=",
     "answer": 77,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 15,
-    "question": "57+91=",
+    "question": "57/91=",
     "answer": 148,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 16,
-    "question": "78+34=",
+    "question": "78/34=",
     "answer": 112,
     "rank": 95,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 17,
-    "question": "74+11=",
+    "question": "74/11=",
     "answer": 85,
     "rank": 95,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 18,
-    "question": "41+5=",
+    "question": "41/5=",
     "answer": 46,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 19,
-    "question": "40+21=",
+    "question": "40/21=",
     "answer": 61,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 20,
-    "question": "63+38=",
+    "question": "63/38=",
     "answer": 101,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 21,
-    "question": "71+81=",
+    "question": "71/81=",
     "answer": 152,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 22,
-    "question": "93+89=",
+    "question": "93/89=",
     "answer": 182,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 23,
-    "question": "14+34=",
+    "question": "14/34=",
     "answer": 48,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 24,
-    "question": "72+50=",
+    "question": "72/50=",
     "answer": 122,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 25,
-    "question": "32+57=",
+    "question": "32/57=",
     "answer": 89,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 26,
-    "question": "69+62=",
+    "question": "69/62=",
     "answer": 131,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 27,
-    "question": "42+55=",
+    "question": "42/55=",
     "answer": 97,
     "rank": 95,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 28,
-    "question": "69+83=",
+    "question": "69/83=",
     "answer": 152,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 29,
-    "question": "40+58=",
+    "question": "40/58=",
     "answer": 98,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 30,
-    "question": "43+31=",
+    "question": "43/31=",
     "answer": 74,
     "rank": 100,
-    "category": "add",
-    "score": null
+    "category": "divide"
   },
   {
     "id": 31,
-    "question": "47+87=",
+    "question": "47/87=",
     "answer": 134,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 32,
-    "question": "14+56=",
+    "question": "14/56=",
     "answer": 70,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 33,
-    "question": "64+10=",
+    "question": "64/10=",
     "answer": 74,
-    "rank": 95,
-    "category": "add"
+    "rank": 100,
+    "category": "divide"
   },
   {
     "id": 34,
-    "question": "70+63=",
+    "question": "70/63=",
     "answer": 133,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 35,
-    "question": "60+69=",
+    "question": "60/69=",
     "answer": 129,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 36,
-    "question": "78+53=",
+    "question": "78/53=",
     "answer": 131,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 37,
-    "question": "70+27=",
+    "question": "70/27=",
     "answer": 97,
     "rank": 90,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 38,
-    "question": "59+97=",
+    "question": "59/97=",
     "answer": 156,
-    "rank": 95,
-    "category": "add"
+    "rank": 100,
+    "category": "divide"
   },
   {
     "id": 39,
-    "question": "59+41=",
+    "question": "59/41=",
     "answer": 100,
     "rank": 105,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 40,
-    "question": "70+61=",
+    "question": "70/61=",
     "answer": 131,
-    "rank": 115,
-    "category": "add"
+    "rank": 100,
+    "category": "divide"
   },
   {
     "id": 41,
-    "question": "28+66=",
+    "question": "28/66=",
     "answer": 94,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 42,
-    "question": "32+93=",
+    "question": "32/93=",
     "answer": 125,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 43,
-    "question": "19+27=",
+    "question": "19/27=",
     "answer": 46,
-    "rank": 95,
-    "category": "add"
+    "rank": 100,
+    "category": "divide"
   },
   {
     "id": 44,
-    "question": "85+32=",
+    "question": "85/32=",
     "answer": 117,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 45,
-    "question": "94+7=",
+    "question": "94/7=",
     "answer": 101,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 46,
-    "question": "95+18=",
+    "question": "95/18=",
     "answer": 113,
     "rank": 95,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 47,
-    "question": "69+30=",
+    "question": "69/30=",
     "answer": 99,
     "rank": 95,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 48,
-    "question": "54+47=",
+    "question": "54/47=",
     "answer": 101,
     "rank": 95,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 49,
-    "question": "68+57=",
+    "question": "68/57=",
     "answer": 125,
     "rank": 95,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 50,
-    "question": "90+81=",
+    "question": "90/81=",
     "answer": 171,
-    "rank": 95,
-    "category": "add"
+    "rank": 100,
+    "category": "divide"
   },
   {
     "id": 51,
-    "question": "62+29=",
+    "question": "62/29=",
     "answer": 91,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 52,
-    "question": "9+40=",
+    "question": "9/40=",
     "answer": 49,
-    "rank": 105,
-    "category": "add"
+    "rank": 100,
+    "category": "divide"
   },
   {
     "id": 53,
-    "question": "75+58=",
+    "question": "75/58=",
     "answer": 133,
     "rank": 105,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 54,
-    "question": "14+92=",
+    "question": "14/92=",
     "answer": 106,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 55,
-    "question": "93+38=",
+    "question": "93/38=",
     "answer": 131,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 56,
-    "question": "62+99=",
+    "question": "62/99=",
     "answer": 161,
     "rank": 105,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 57,
-    "question": "53+71=",
+    "question": "53/71=",
     "answer": 124,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 58,
-    "question": "4+77=",
+    "question": "4/77=",
     "answer": 81,
-    "rank": 90,
-    "category": "add"
+    "rank": 100,
+    "category": "divide"
   },
   {
     "id": 59,
-    "question": "50+68=",
+    "question": "50/68=",
     "answer": 118,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 60,
-    "question": "55+80=",
+    "question": "55/80=",
     "answer": 135,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   },
   {
     "id": 61,
-    "question": "1234+6548",
+    "question": "1234/6548",
     "answer": 7782,
     "rank": 100,
-    "category": "add"
+    "category": "divide"
   }
 ]
