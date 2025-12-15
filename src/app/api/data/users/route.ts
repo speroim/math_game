@@ -6,8 +6,8 @@ export async function POST(request: Request) {
   console.log("🔵 Route reached!");
 
   try {
-    const { fileName, id, score, increment } = await request.json();
-    console.log("📦 Received:", { fileName, id, score, increment });
+    const { fileName, id, rank, increment } = await request.json();
+    console.log("📦 Received:", { fileName, id, rank, increment });
 
     // ללא params.filename - קובע ישירות
     const fileNamePath = path.basename(fileName);
@@ -33,8 +33,8 @@ export async function POST(request: Request) {
         { status: 404 }
       );
     }
-    // id, score, increment
-    item.score = increment !== undefined ? item.score + increment : score;
+    // id, rank, increment
+    item.rank = increment !== undefined ? item.rank + increment : rank;
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 
     console.log("✅ Updated successfully:", item);
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       success: true,
       message: `Updated id ${id}`,
-      newScore: item.score,
+      newRank: item.rank,
     });
   } catch (error) {
     console.error("💥 Error:", error);
@@ -52,26 +52,3 @@ export async function POST(request: Request) {
     );
   }
 }
-
-// // קריאה (GET)
-// export async function GET(
-//   request: Request,
-//   { params }: { params: { filename: string } }
-// ) {
-//   try {
-//     const safeName = validateFileName(params.filename);
-//     const filePath = path.join(process.cwd(), "data", `${safeName}.json`);
-
-//     // בדיקה אם הקובץ קיים לפני קריאה כדי לא לקרוס
-//     if (!fs.existsSync(filePath)) {
-//       return NextResponse.json({ error: "File not found" }, { status: 404 });
-//     }
-
-//     const fileContents = fs.readFileSync(filePath, "utf8");
-//     const data = JSON.parse(fileContents);
-
-//     return NextResponse.json(data);
-//   } catch (error) {
-//     return NextResponse.json({ error: "Failed to load" }, { status: 500 });
-//   }
-// }

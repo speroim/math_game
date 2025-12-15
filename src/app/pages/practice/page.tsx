@@ -7,49 +7,78 @@ import mulQuestions from "@/../public/mulQuestions.json";
 import subQuestions from "@/../public/subQuestions.json";
 import Answer from "@/app/components/answer";
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
-import { Player, PracticeProps } from "../../../../public/practiceType";
+import { PracticeProps, Question } from "../../../../public/practiceType";
+import { pickQuestion, Player } from "@/app/function/pickQuestion";
 
 export default function Practice({ title }: PracticeProps) {
+  const defaultUser: Player = {
+    id: 0,
+    firstName: "",
+    lastName: "",
+    nickName: "",
+    password: "",
+    lastQuestions: {
+      addQuestions: [],
+      subQuestions: [],
+      mulQuestions: [],
+      divQuestions: [],
+    },
+    email: "",
+    rank: 0,
+  };
+
   const [correctAnswers, setCorrectAnswers] = useState(0);
-  const [selectedQuestion, setSelectedQuestion] = useState<number | null>(null);
-  const [userData, setUserData] = useState<Player | null>(null);
+  const [selectedQuestion, setSelectedQuestion] = useState<Question | null>(
+    null
+  );
+  const [userData, setUserData] = useState<Player | null>(defaultUser);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedUserString = localStorage.getItem("user");
-      if (storedUserString) {
-        try {
-          const userObject: Player = JSON.parse(storedUserString);
-          setUserData(userObject);
-        } catch (error) {
-          console.error("Failed to parse user data from localStorage:", error);
-        }
+    const storedUserString = localStorage.getItem("user");
+    if (storedUserString) {
+      try {
+        const userObject: Player = JSON.parse(storedUserString);
+        setUserData(userObject);
+      } catch (error) {
+        console.error("Failed to parse user data from localStorage:", error);
       }
     }
   }, []);
 
-  const currentPath = usePathname();
-  console.log(currentPath);
+  useEffect(() => {
+    console.log("userData updated:", userData);
+  }, [userData]);
+
   const questionData = [
     { name: "addQuestions", data: addQuestions },
     { name: "subQuestions", data: subQuestions },
     { name: "mulQuestions", data: mulQuestions },
     { name: "divQuestions", data: divQuestions },
-  ];
+  ] as const;
 
-  const chooseQuestion = () => {
-    const length = questionData[title].data.length;
-    return Math.floor(Math.random() * length);
-  };
   useEffect(() => {
-    setSelectedQuestion(chooseQuestion());
-  }, []);
+    if (!userData) {
+      console.log("no user data");
+      return;
+    }
+    const fetchQuestion = async () => {
+      const q = await pickQuestion(
+        questionData[title].data,
+        userData,
+        questionData[title].name
+      );
+      console.log(q);
+      setSelectedQuestion(q);
+    };
+    fetchQuestion();
+  }, [userData]);
   if (selectedQuestion === null) {
+    console.log(selectedQuestion);
+
     return <div className="fullPage">טוען...</div>;
   }
 
-  const updateUserScore = async (userId: number, points: number) => {
+  const updateUserRank = async (userId: number, points: number) => {
     try {
       const response = await fetch("/api/data/users", {
         method: "POST",
@@ -63,14 +92,14 @@ export default function Practice({ title }: PracticeProps) {
 
       if (!response.ok) {
         console.error(
-          "Failed to update score. Server returned:",
+          "Failed to update rank. Server returned:",
           response.status
         );
         return;
       }
 
       const result = await response.json();
-      console.log("Score user updated:", result.newScore);
+      console.log("rank user updated:", result.newRank);
 
       // --- 4. סנכרון localStorage ו-State ---
 
@@ -83,7 +112,7 @@ export default function Practice({ title }: PracticeProps) {
           const userObject = JSON.parse(storedUserString);
 
           // ג. עדכון הציון באובייקט המקומי
-          userObject.rank = result.newScore;
+          userObject.rank = result.newRank;
 
           // ד. שמירת האובייקט המעודכן בחזרה ב-localStorage
           localStorage.setItem("user", JSON.stringify(userObject));
@@ -97,14 +126,14 @@ export default function Practice({ title }: PracticeProps) {
       }
 
       // 5. החזרת הציון החדש
-      return result.newScore;
+      return result.newRank;
     } catch (error) {
       // 6. טיפול בשגיאות רשת (כשלון חיבור, DNS וכו')
-      console.error("Error updating score (Network/Fetch failure):", error);
+      console.error("Error updating rank (Network/Fetch failure):", error);
     }
   };
 
-  const updateQuestionScore = async (
+  const updateQuestionRank = async (
     fileName: string,
     userId: number,
     points: number
@@ -126,31 +155,31 @@ export default function Practice({ title }: PracticeProps) {
         return;
       }
       const result = await response.json();
-      console.log("Score question updated:", result.newScore);
+      console.log("rank question updated:", result.newRank);
 
-      return result.newScore;
+      return result.newRank;
     } catch (error) {
-      console.error("Error updating score:", error);
+      console.error("Error updating rank:", error);
     }
   };
 
   const isCorrectHandle = async (isCorrect: boolean) => {
     if (userData !== null) {
       if (isCorrect) {
-        await updateQuestionScore(
+        await updateQuestionRank(
           questionData[title].name,
-          selectedQuestion,
+          selectedQuestion.id,
           -5
         );
-        await updateUserScore(userData.id, 5);
+        await updateUserRank(userData.id, 5);
         setCorrectAnswers((prev) => prev + 1);
       } else {
-        await updateQuestionScore(
+        await updateQuestionRank(
           questionData[title].name,
-          selectedQuestion,
+          selectedQuestion.id,
           5
         );
-        await updateUserScore(userData.id, -5);
+        await updateUserRank(userData.id, -5);
       }
     }
   };
@@ -163,17 +192,17 @@ export default function Practice({ title }: PracticeProps) {
         </div>
         <div className="question w-full flex bg-gray-100 border-4 p-4 place-content-center text-5xl font-bold ">
           {" "}
-          {questionData[title].data[selectedQuestion].question}
+          {selectedQuestion.question}
         </div>
         <div className="w-full my-2">
           {" "}
           <Answer
             title={questionData[title].data}
-            id={selectedQuestion}
+            id={selectedQuestion.id}
             onHandleChecked={isCorrectHandle}
           />
         </div>
-        {userData?.nickName} your current score is {userData?.rank}
+        {userData?.nickName} your current rank is {userData?.rank}
       </div>
     </div>
   );

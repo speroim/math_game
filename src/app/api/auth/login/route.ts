@@ -2,16 +2,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import { Player } from "../../../../../public/practiceType";
 
 // הגדרת הטייפ של המשתמש
-interface User {
-  id: number;
-  firstName: string;
-  lastName: string;
-  password: string;
-  email: string;
-  score: number;
-}
 
 export async function POST(request: NextRequest) {
   try {
@@ -29,7 +22,7 @@ export async function POST(request: NextRequest) {
     // שנה את הנתיב לפי המיקום של קובץ המשתמשים שלך
     const filePath = path.join(process.cwd(), "public", "users.json");
     const fileContents = fs.readFileSync(filePath, "utf8");
-    const users: User[] = JSON.parse(fileContents);
+    const users: Player[] = JSON.parse(fileContents);
 
     // חיפוש המשתמש לפי אימייל
     const user = users.find((u) => u.email === email);
@@ -56,8 +49,10 @@ export async function POST(request: NextRequest) {
         id: user.id,
         firstName: user.firstName,
         lastName: user.lastName,
+        nickName: user.nickName,
+        lastQuestions: user.lastQuestions,
         email: user.email,
-        score: user.score,
+        rank: user.rank,
       },
     });
   } catch (error) {

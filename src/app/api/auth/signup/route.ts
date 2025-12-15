@@ -2,20 +2,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
-
-// הגדרת הטייפ של המשתמש
-interface User {
-  id: number;
-  firstName: string;
-  lastName: string;
-  password: string;
-  email: string;
-  score: number;
-}
+import { Player } from "../../../../../public/practiceType";
 
 export async function POST(request: NextRequest) {
   try {
-    const { firstName, lastName, email, password } = await request.json();
+    const { firstName, lastName, nickName, lastQuestions, email, password } =
+      await request.json();
 
     // בדיקות קלט בסיסיות
     if (!firstName || !lastName || !email || !password) {
@@ -45,7 +37,7 @@ export async function POST(request: NextRequest) {
     // קריאת קובץ ה-JSON
     const filePath = path.join(process.cwd(), "public", "users.json");
     const fileContents = fs.readFileSync(filePath, "utf8");
-    const users: User[] = JSON.parse(fileContents);
+    const users: Player[] = JSON.parse(fileContents);
 
     // בדיקה האם האימייל כבר קיים
     const existingUser = users.find(
@@ -64,13 +56,15 @@ export async function POST(request: NextRequest) {
       users.length > 0 ? Math.max(...users.map((u) => u.id)) + 1 : 1;
 
     // יצירת משתמש חדש
-    const newUser: User = {
+    const newUser: Player = {
       id: newId,
       firstName,
       lastName,
+      nickName,
+      lastQuestions,
       password, // בפרודקשן צריך להצפין את הסיסמה!
       email,
-      score: 100, // התחלה עם 100 נקודות
+      rank: 100, // התחלה עם 100 נקודות
     };
 
     // הוספת המשתמש למערך
@@ -87,8 +81,10 @@ export async function POST(request: NextRequest) {
           id: newUser.id,
           firstName: newUser.firstName,
           lastName: newUser.lastName,
+          nickName: newUser.nickName,
+          lastQuestions: newUser.lastQuestions,
           email: newUser.email,
-          score: newUser.score,
+          rank: newUser.rank,
         },
       },
       { status: 201 }

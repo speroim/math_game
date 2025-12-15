@@ -1,3 +1,5 @@
+import { LastQuestions } from "@/app/function/pickQuestion";
+
 export interface PracticeProps {
   title: number;
 }
@@ -12,12 +14,12 @@ export interface Player {
   rank: number;
 }
 
-export interface LastQuestions {
-  add: number[];
-  sub: number[];
-  mul: number[];
-  div: number[];
-}
+// export interface LastQuestions {
+//   add: number[];
+//   sub: number[];
+//   mul: number[];
+//   div: number[];
+// }
 
 export type answerProps = {
   title: Question[];
@@ -33,7 +35,6 @@ export interface Player {
   password: string;
   lastQuestions: LastQuestions;
   email: string;
-  score: number;
   rank: number;
 }
 export interface Question {

@@ -45,7 +45,7 @@
     "id": 6,
     "question": "235+18=",
     "answer": 253,
-    "rank": 100,
+    "rank": 105,
     "category": "add"
   },
   {
@@ -73,7 +73,7 @@
     "id": 10,
     "question": "16+11=",
     "answer": 27,
-    "rank": 100,
+    "rank": 95,
     "category": "add"
   },
   {
@@ -87,7 +87,7 @@
     "id": 12,
     "question": "84+21=",
     "answer": 105,
-    "rank": 100,
+    "rank": 95,
     "category": "add"
   },
   {
@@ -129,14 +129,14 @@
     "id": 18,
     "question": "41+5=",
     "answer": 46,
-    "rank": 100,
+    "rank": 95,
     "category": "add"
   },
   {
     "id": 19,
     "question": "40+21=",
     "answer": 61,
-    "rank": 100,
+    "rank": 90,
     "category": "add"
   },
   {
@@ -192,7 +192,7 @@
     "id": 27,
     "question": "42+55=",
     "answer": 97,
-    "rank": 95,
+    "rank": 90,
     "category": "add"
   },
   {
@@ -214,8 +214,7 @@
     "question": "43+31=",
     "answer": 74,
     "rank": 100,
-    "category": "add",
-    "score": null
+    "category": "add"
   },
   {
     "id": 31,
@@ -235,7 +234,7 @@
     "id": 33,
     "question": "64+10=",
     "answer": 74,
-    "rank": 95,
+    "rank": 90,
     "category": "add"
   },
   {
@@ -256,28 +255,28 @@
     "id": 36,
     "question": "78+53=",
     "answer": 131,
-    "rank": 100,
+    "rank": 105,
     "category": "add"
   },
   {
     "id": 37,
     "question": "70+27=",
     "answer": 97,
-    "rank": 90,
+    "rank": 85,
     "category": "add"
   },
   {
     "id": 38,
     "question": "59+97=",
     "answer": 156,
-    "rank": 95,
+    "rank": 100,
     "category": "add"
   },
   {
     "id": 39,
     "question": "59+41=",
     "answer": 100,
-    "rank": 105,
+    "rank": 100,
     "category": "add"
   },
   {
@@ -382,21 +381,21 @@
     "id": 54,
     "question": "14+92=",
     "answer": 106,
-    "rank": 100,
+    "rank": 95,
     "category": "add"
   },
   {
     "id": 55,
     "question": "93+38=",
     "answer": 131,
-    "rank": 100,
+    "rank": 105,
     "category": "add"
   },
   {
     "id": 56,
     "question": "62+99=",
     "answer": 161,
-    "rank": 105,
+    "rank": 100,
     "category": "add"
   },
   {
@@ -417,14 +416,14 @@
     "id": 59,
     "question": "50+68=",
     "answer": 118,
-    "rank": 100,
+    "rank": 95,
     "category": "add"
   },
   {
     "id": 60,
     "question": "55+80=",
     "answer": 135,
-    "rank": 100,
+    "rank": 95,
     "category": "add"
   },
   {

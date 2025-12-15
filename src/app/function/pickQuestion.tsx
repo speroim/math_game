@@ -1,4 +1,6 @@
+import { error } from "console";
 import { Question } from "../../../public/practiceType";
+import { promises } from "dns";
 
 export interface LastAnsweredItem {
   id: number;
@@ -6,10 +8,10 @@ export interface LastAnsweredItem {
 }
 
 export interface LastQuestions {
-  add: LastAnsweredItem[];
-  sub: LastAnsweredItem[];
-  mul: LastAnsweredItem[];
-  div: LastAnsweredItem[];
+  addQuestions: LastAnsweredItem[];
+  subQuestions: LastAnsweredItem[];
+  mulQuestions: LastAnsweredItem[];
+  divQuestions: LastAnsweredItem[];
 }
 
 export interface Player {
@@ -20,87 +22,91 @@ export interface Player {
   password: string;
   lastQuestions: LastQuestions;
   email: string;
-  score: number;
   rank: number;
 }
 
 type Category = keyof LastQuestions;
 
-export function pickQuestion(
+export async function pickQuestion(
   questions: Question[],
   player: Player,
   category: Category
-): Question | null {
-  let diffRange = 10;
+): Promise<Question | null> {
+  let diffRange = 100;
   const RANGE_STEP = 10;
   const INCREASE_EVERY = 3;
   const MAX_RANGE = 1000;
   const twoDays = 48 * 60 * 60 * 1000;
+  const MAX_TRIES = questions.length * 2;
 
   let tries = 0;
+  if (questions.length === 0) {
+    console.error("no question in server");
+    return null;
+  }
 
-  // רשימת שאלות שנענו ב־48 שעות האחרונות לקטגוריה הזו
-  const recentAnsweredIds = (player.lastQuestions[category] ?? [])
-    .filter((item) => Date.now() - item.answeredAt < twoDays)
-    .map((item) => item.id);
+  const getRecentAnsweredIds = () =>
+    (player.lastQuestions[category] ?? [])
+      .filter((item) => Date.now() - item.answeredAt < twoDays)
+      .map((item) => item.id);
+
+  const saveLastQuestions = async () => {
+    try {
+      console.log("Sending to server:", {
+        userId: player.id,
+        lastQuestions: player.lastQuestions,
+      });
+      const response = await fetch(`/api/data/users/lastQuestion`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: player.id,
+          lastQuestions: player.lastQuestions,
+        }),
+      });
+
+      // הוסף בדיקה זו!
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Server error:", response.status, errorData);
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("Success:", data);
+    } catch (err) {
+      console.error("Failed to update lastQuestions on server", err);
+    }
+  };
 
   while (true) {
     const randomIndex = Math.floor(Math.random() * questions.length);
     const q = questions[randomIndex];
+    const RecentAnsweredIds = getRecentAnsweredIds();
 
-    if (q.category !== category) {
+    if (tries >= MAX_TRIES) {
+      player.lastQuestions[category] = [];
+      diffRange = 100;
+      tries = 0;
+      await saveLastQuestions();
+    }
+
+    if (RecentAnsweredIds.includes(q.id)) {
       tries++;
     } else {
-      // דלג על שאלות שנענו ביומיים האחרונים
-      if (recentAnsweredIds.includes(q.id)) {
-        tries++;
+      const diff = Math.abs(q.rank - player.rank);
+      if (diff >= diffRange) {
+        diffRange += RANGE_STEP;
       } else {
-        // בדיקת התאמה לטווח קושי
-        if (Math.abs(q.rank - player.rank) <= diffRange) {
-          // עדכון היסטוריה
-          player.lastQuestions[category] ??= [];
+        player.lastQuestions[category].push({
+          id: q.id,
+          answeredAt: Date.now(),
+        });
+        await saveLastQuestions();
+        console.log(player, "push");
 
-          player.lastQuestions[category].push({
-            id: q.id,
-            answeredAt: Date.now(),
-          });
-
-          return q;
-        }
-
-        tries++;
+        return q;
       }
-    }
-
-    // הגדלת טווח כל 3 ניסיונות
-    if (tries % INCREASE_EVERY === 0) {
-      diffRange += RANGE_STEP;
-    }
-
-    // fallback למקרה קיצון
-    if (diffRange > MAX_RANGE) {
-      const filtered = questions.filter(
-        (x) => x.category === category && !recentAnsweredIds.includes(x.id)
-      );
-
-      if (filtered.length === 0) {
-        return null;
-      }
-
-      const best = filtered.reduce((best, cur) =>
-        Math.abs(cur.rank - player.rank) < Math.abs(best.rank - player.rank)
-          ? cur
-          : best
-      );
-
-      player.lastQuestions[category] ??= [];
-
-      player.lastQuestions[category].push({
-        id: best.id,
-        answeredAt: Date.now(),
-      });
-
-      return best;
     }
   }
 }

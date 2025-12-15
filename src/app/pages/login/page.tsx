@@ -25,12 +25,9 @@ export default function Page() {
         setError(data.message);
         return { success: false, message: data.message };
       }
-
-      // שמירת המשתמש ב-localStorage או sessionStorage
       localStorage.setItem("user", JSON.stringify(data.user));
 
-      // הפניה לדף הבית או דשבורד
-      router.push("/"); // שנה לנתיב הרצוי
+      router.push("/");
 
       return { success: true, user: data.user };
     } catch (err) {

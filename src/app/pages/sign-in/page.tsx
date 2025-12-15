@@ -17,11 +17,13 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { Player } from "../../../../public/practiceType";
 
 export default function Page() {
   const router = useRouter();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [nickName, setNickName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -55,6 +57,7 @@ export default function Page() {
         body: JSON.stringify({
           firstName,
           lastName,
+          nickName,
           email,
           password,
         }),
@@ -68,8 +71,23 @@ export default function Page() {
         return;
       }
 
-      // רישום מוצלח - שמירת המשתמש והפניה לדף הבית
-      localStorage.setItem("user", JSON.stringify(data.user));
+      const newUser: Player = {
+        id: data.user.id,
+        firstName: data.user.firstName,
+        lastName: data.user.lastName,
+        nickName: data.user.nickName,
+        password: data.user.password,
+        email: data.user.email,
+        rank: 0,
+        lastQuestions: {
+          addQuestions: [],
+          subQuestions: [],
+          mulQuestions: [],
+          divQuestions: [],
+        },
+      };
+
+      localStorage.setItem("user", JSON.stringify(newUser));
       router.push("/");
     } catch (err) {
       setError("שגיאה בהתחברות לשרת");
@@ -108,6 +126,17 @@ export default function Page() {
                     type="text"
                     placeholder="Doe"
                     value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    required
+                  />
+                </Field>
+                <Field>
+                  <FieldLabel htmlFor="nickName">nickName</FieldLabel>
+                  <Input
+                    id="nickName"
+                    type="text"
+                    placeholder="Doe"
+                    value={nickName}
                     onChange={(e) => setLastName(e.target.value)}
                     required
                   />
